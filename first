@@ -1,0 +1,63 @@
+//c语言
+#include <stdio.h>
+#include <stdlib.h>
+
+//单链表的定义
+typedef struct LNode {
+	int data;
+	struct LNode *next;
+}LNode,*LinkList;
+
+//逆序创建带头结点,节点数为n的单链表(头插法)
+int CreateList_L(LinkList &L,int n) {
+	int i;
+	LinkList p;
+	L = (LinkList)malloc(sizeof(LNode));	//分配空间
+	if (!L) exit(-1);	//分配失败，返回值为-1
+	L->next = NULL;	//一个带头结点的单链表
+	for (i = n; i > 0;i--) {	//头插法插入的
+		p= (LinkList)malloc(sizeof(LNode));
+		scanf("%d",&(p->data));
+		p->next = L->next;
+		L->next = p;
+	}
+	return 1;
+}
+
+//顺序创建带头结点，结点数为n的单链表(尾插法)
+int wCreateList_L(LinkList& L, int n) {
+	LinkList p, q;
+	int e;
+	L = (LinkList)malloc(sizeof(LNode));
+	if (!L) exit(-1);	//分配失败，返回值为-1
+	L->next = NULL;
+	p = L;
+	for (int i = 0; i < n;i++) {
+		q = (LinkList)malloc(sizeof(LNode));
+		if (!L) exit(-1);	//分配失败，返回值为-1
+		scanf("%d",&e );
+		q->data = e;
+		q->next = NULL;
+		p->next = q;
+		p = q;
+	}
+	return 1;
+}
+
+//输出单链表元素
+void traverse(LinkList L) {
+	LinkList p;
+	p = L->next;
+	printf("输出的元素为：");
+	while (p!=NULL) {
+		printf("%5d",p->data);
+		p = p->next;
+	}
+}
+
+void main() {
+	LinkList L;
+	printf("输入5个数创建顺序链表：\n");
+	wCreateList_L(L, 5);
+	traverse(L);
+ }
