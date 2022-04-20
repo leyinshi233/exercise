@@ -61,3 +61,4 @@ void main() {
 	wCreateList_L(L, 5);
 	traverse(L);
  }
+ 树，二叉树，赫夫曼树
